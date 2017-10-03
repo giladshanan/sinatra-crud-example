@@ -1,13 +1,13 @@
 <h3>Profile Page</h3>
 
-<h4><%= @user.name %>'s Games</h4>
+<h4><%= @user.name %>'s Emapanada Orders</h4>
 
-<% if @user.games.any? %>
+<% if @user.orders.any? %>
 <ul>
-  <% @user.games.each do |game|%>
-  <li><%= game.name %></li>
+  <% @user.orders.each do |order|%>
+  <li><%= order.name %></li>
   <% end %>
 </ul>
 <% else %>
-  <p>This user hasn't created any games</p>
+  <p>This user hasn't ordered any empanadas</p>
 <% end %>

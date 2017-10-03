@@ -1,19 +1,20 @@
 class User < ActiveRecord::Base
   include BCrypt
 
-  has_many :games
+  has_many :orders, foreign_key: :eater_id
+  has_many :empanadas, through: :orders
 
   validates :username, :name, presence: true
   validate :validate_password
 
   def password
-    @password ||= Password.new(password_type_thing)
+    @password ||= Password.new(password_hash)
   end
 
   def password=(plain_text_password)
     @raw_password = plain_text_password
     @password = Password.create(plain_text_password)
-    self.password_type_thing = @password
+    self.password_hash = @password
   end
 
   def authenticate(plain_text_password)
